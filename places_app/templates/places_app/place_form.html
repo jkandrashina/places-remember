@@ -1,0 +1,40 @@
+{% extends 'places_app/base.html' %}
+{% load socialaccount %}
+
+{% block content %}
+
+  <header class='d-flex justify-content-center py-3'>
+    <div class='container auth-user-info'>
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+        <div class='col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
+          <img src='{{ user.socialaccount_set.all.0.get_avatar_url }}' class='rounded-circle'>
+          <p>{{ user.socialaccount_set.all.0.extra_data.name }}</p>
+        </div>
+        <div class='text-end'>
+          <a href="{% url 'account_logout' %}" class='btn btn-primary'>Выйти</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="px-4 py-5 text-center">
+    <h1 class="display-5 fw-bold">Ваше новое впечатление</h1>
+    <form method='POST' class='post-form'>
+    {% csrf_token %}
+      <div>
+        <label for="id_place_name">Название места:</label>
+        {{ form.place_name }}
+      </div>
+      <div>
+        <label for="id_address">Адрес:</label>
+        {{ form.address }}
+      </div> 
+      <div>
+        <label for="id_text">Комментарий:</label>
+        {{ form.text }}
+      </div>   
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Сохранить</button>
+      
+    </form>
+  </div>
+
+{% endblock content %}

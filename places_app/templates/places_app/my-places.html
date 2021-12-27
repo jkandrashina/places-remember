@@ -1,0 +1,63 @@
+{% extends 'places_app/base.html' %}
+{% load socialaccount %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+  <header class='d-flex justify-content-center py-3'>
+    <div class='container auth-user-info'>
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+        <div class='col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
+          <img src='{{ user.socialaccount_set.all.0.get_avatar_url }}' class='rounded-circle'>
+          <p>{{ user.socialaccount_set.all.0.extra_data.name }}</p>
+        </div>
+        <div class='text-end'>
+          <a href="{% url 'account_logout' %}" class='btn btn-primary'>Выйти</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="px-4 py-5 text-center">
+    <h1 class="display-5 fw-bold">Places Remember</h1>
+    <div class="col-lg-10 mx-auto my-places-list">
+      {% if places %}
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Название</th>
+              <th scope="col">Адрес</th>
+              <th scope="col">Комментарий</th>
+            </tr>
+          </thead>
+          <tbody>
+      {% for place in places %}
+          <tr>
+            <td>{{ place.place_name }}</td>
+            <td>{{ place.address }}</td>
+            <td>{{ place.text }}</td>
+          </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="lead mb-4">Добавьте свое первое впечатление</p>
+      {% endif %}
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{% url 'place_form' %}" class='btn btn-primary'>Добавить</a>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Places Remember</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Это приложение позволяет вам сохранять впечатления о местах, в которых вы побывали.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{% provider_login_url 'facebook' method='oauth2' %}" class='btn btn-primary'>Войти с помощью Facebook</a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% endblock content %}

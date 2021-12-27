@@ -1,0 +1,45 @@
+.auth-user-info img,
+.auth-user-info p {
+    display: inline-block;
+}
+
+.auth-user-info img {
+    width: 50px;
+}
+
+.auth-user-info p {
+    margin-left: 20px;
+}
+
+.post-form {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    margin: auto;
+    text-align: left;
+  
+}
+
+.post-form input,
+.post-form textarea {
+    width: 100%;
+}
+
+.post-form div {
+    margin-bottom: 15px;    
+}
+
+.post-form input:focus-visible,
+.post-form textarea:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 50%);
+    border: 1px solid #0a58ca;
+    outline: none;
+}
+
+.my-places-list {
+    margin-top: 50px;   
+}
+
+.my-places-list table {
+    margin-bottom: 50px;    
+}
