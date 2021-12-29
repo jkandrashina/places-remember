@@ -16,7 +16,9 @@ def place_form(request):
         form = PlaceForm()
     return render(request, 'places_app/place_form.html', {'form': form})
 
-@login_required
 def places_list(request):
-    places = PlaceToRemember.objects.filter(author=request.user).order_by('pub_date')
-    return render(request, 'places_app/my-places.html', {'places': places})
+    if request.user.is_authenticated:
+        places = PlaceToRemember.objects.filter(author=request.user).order_by('pub_date')
+        return render(request, 'places_app/home.html', {'places': places})
+    else:
+        return render(request, 'places_app/home.html')
