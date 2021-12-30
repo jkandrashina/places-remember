@@ -11,7 +11,7 @@ def place_form(request):
             place = form.save(commit=False)
             place.author = request.user
             place.save()
-            return redirect('my_places')
+            return redirect('home')
     else:
         form = PlaceForm()
     return render(request, 'places_app/place_form.html', {'form': form})
