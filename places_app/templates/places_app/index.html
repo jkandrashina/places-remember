@@ -1,0 +1,19 @@
+{% extends 'places_app/base.html'%}
+
+{% block title %}Places Remember{% endblock %}
+
+{% block content %}
+    <main class="home-signin text-center p-3">
+      <h1 class="display-5 fw-bold mb-4">Places Remember</h1>
+      <div class="mb-5">
+        <p class="lead">Добро пожаловать в сервис, который позволяет Вам сохранять свои воспоминания.
+        <br>
+        Добавляйте города и страны, в которых Вы побывали, и оставляйте комментарии к ним.</p>
+        <p class="lead">Используйте свой аккаунт Google или VK, чтобы получить доступ ко всем возможностям Places Remember.</p>
+      </div> 
+      <div class="d-grid gap-3 col-10 col-sm-4 mx-auto">
+        <button type="button" class="btn btn-outline-primary">Войти через Google</button>
+        <button type="button" class="btn btn-outline-success">Войти через VK</button>
+      </div>
+    </main>
+{% endblock %}
