@@ -1,5 +1,7 @@
 {% extends 'places_app/base.html'%}
 
+{% load socialaccount %}
+
 {% block title %}Places Remember{% endblock %}
 
 {% block content %}
@@ -12,8 +14,8 @@
         <p class="lead">Используйте свой аккаунт Google или VK, чтобы получить доступ ко всем возможностям Places Remember.</p>
       </div> 
       <div class="d-grid gap-3 col-10 col-sm-4 mx-auto">
-        <a href="" class="btn btn-outline-primary">Войти через Google</a>
-        <a href="" class="btn btn-outline-success">Войти через VK</a>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-primary">Войти через Google</a>
+        <a href="{% provider_login_url 'vk' %}" class="btn btn-outline-success">Войти через VK</a>
       </div>
     </main>
 {% endblock %}
