@@ -8,6 +8,11 @@ body {
 }
 
 .home-signin {
+  height: 100%;
   width: 100%;
   max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
