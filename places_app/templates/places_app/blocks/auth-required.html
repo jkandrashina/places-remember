@@ -1,0 +1,12 @@
+{% load socialaccount %}
+
+    <main class="mx-auto p-3 auth-required">
+      <h1 class="display-5 fw-bold mb-4">Places Remember</h1>
+      <div class="mb-5">
+        <p class="lead">Для просмотра данной страницы необходимо авторизоваться.</p>
+      </div> 
+      <div class="d-grid gap-3 col-10 col-sm-4 mx-auto">
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-primary">Войти через Google</a>
+        <a href="{% provider_login_url 'vk' %}" class="btn btn-outline-success">Войти через VK</a>
+      </div>
+    </main>

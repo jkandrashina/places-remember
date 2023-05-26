@@ -1,0 +1,19 @@
+{% load socialaccount %}
+
+  <header class='d-flex justify-content-center py-3'>
+    <div class='container'>
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+        <div class='col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
+          <img src='{{ user.socialaccount_set.all.0.get_avatar_url }}' class='rounded-circle auth-user-img'>
+          {% if user.socialaccount_set.all.0.provider == "vk" %}
+          <span>{{ user.socialaccount_set.all.0.extra_data.first_name }} {{ user.socialaccount_set.all.0.extra_data.last_name }}</span>
+          {% else %}
+          <span>{{ user.socialaccount_set.all.0.extra_data.name }}</span>
+          {% endif %}
+        </div>
+        <div class='text-end'>
+          <a href="{% url 'account_logout' %}" class='btn btn-primary'>Выйти</a>
+        </div>
+      </div>
+    </div>
+  </header>
