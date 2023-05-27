@@ -1,0 +1,50 @@
+{% extends 'places_app/base.html' %}
+
+{% load socialaccount %}
+
+{% block title %}Мои воспоминания{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}<!-- Если пользователь авторизован -->
+    {% include './blocks/auth-user-info.html' %}
+
+    <div class="container text-center">
+      <main>
+        <h1 class="py-5 mb-4">Мои воспоминания</h1>
+        <div class="col-12 mx-auto">
+          {% if places %}<!-- Если у пользователя есть сохраненные записи -->
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Название</th>
+                  <th>Комментарий</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for place in places %}
+                <tr>
+                  <td>{{ place.place_name }}</td>
+                  <td>{{ place.comment }}</td>
+                  <td><a href="">Изменить</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}<!-- Иначе если сохраненных записей нет -->
+          <p class="lead mb-4">Добавьте свое первое впечатление</p>
+          {% endif %}<!-- Окончание блока if places -->
+          <div class="col-10 col-md-2 mx-auto mt-4">
+            <a href="{% url 'add_place' %}" class="btn btn-lg btn-outline-primary w-100">
+              Добавить
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+  {% else %}<!-- Иначе если пользователь не авторизован -->
+    {% include './blocks/auth-required.html' %}
+  {% endif %}<!-- Окончание блока if user.is_authenticated -->
+{% endblock %}<!-- Окончание блока content -->
