@@ -17,9 +17,10 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Название</th>
-                  <th>Комментарий</th>
-                  <th></th>
+                  <th class="col-2">Название</th>
+                  <th class="col-8">Комментарий</th>
+                  <th class="col-1"></th>
+                  <th class="col-1"></th>
                 </tr>
               </thead>
               <tbody>
@@ -27,14 +28,15 @@
                 <tr>
                   <td>{{ place.place_name }}</td>
                   <td>{{ place.comment }}</td>
-                  <td><a href="">Изменить</a></td>
+                  <td><a href="{% url 'update_place' place.id %}" class="btn btn-outline-primary">Изменить</a></td>
+                  <td><a href="{% url 'delete_place' place.id %}" class="btn btn-outline-danger">Удалить</a></td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
           {% else %}<!-- Иначе если сохраненных записей нет -->
-          <p class="lead mb-4">Добавьте свое первое впечатление</p>
+          <p class="lead mb-4">Добавьте свое первое воспоминание</p>
           {% endif %}<!-- Окончание блока if places -->
           <div class="col-10 col-md-2 mx-auto mt-4">
             <a href="{% url 'add_place' %}" class="btn btn-lg btn-outline-primary w-100">
