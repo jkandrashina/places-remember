@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 
 from .models import PlaceRemember
@@ -25,6 +25,17 @@ class PlaceCreateView(CreateView):
     success_url = reverse_lazy('my_places')
     fields = ['place_name', 'comment']
     
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PlaceUpdateView(UpdateView):
+    model = PlaceRemember
+    template_name = 'places_app/place-update.html'
+    success_url = reverse_lazy('my_places')
+    fields = ['place_name', 'comment']
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
