@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import PlaceRemember
@@ -39,3 +39,9 @@ class PlaceUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class PlaceDeleteView(DeleteView):
+    model = PlaceRemember
+    template_name = 'places_app/place-delete.html'
+    success_url = reverse_lazy('my_places')
