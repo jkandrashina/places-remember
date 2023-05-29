@@ -1,4 +1,3 @@
-#from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
@@ -22,7 +21,7 @@ class PlacesListView(ListView):
 
 class PlaceCreateView(CreateView):
     model = PlaceRemember
-    template_name = 'places_app/add-place.html'
+    template_name = 'places_app/place-form.html'
     success_url = reverse_lazy('my_places')
     fields = ['place_name', 'comment']
     

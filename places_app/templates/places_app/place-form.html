@@ -1,13 +1,13 @@
 {% extends 'places_app/base.html' %}
 
-{% block title %}Добавить воспоминание{% endblock %}
+{% block title %}Мое воспоминание{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
     {% include './blocks/auth-user-info.html' %}
     <div class="container">
       <main>
-        <h1 class="py-5 text-center">Добавить новое воспоминание</h1>
+        <h1 class="py-5 text-center">Мое воспоминание</h1>
         <div class="col-md-6 mx-auto">
           <form method="post" class="add-place-form">{% csrf_token %}
             <div class="row g-3">
@@ -23,7 +23,7 @@
               </div>
             {% endfor %}
               <div class="col-12 col-md-4 mx-auto mt-4">
-                <input class="btn btn-lg btn-outline-primary w-100" type="submit" value="Добавить">
+                <input class="btn btn-lg btn-outline-primary w-100" type="submit" value="Сохранить">
               </div>
             </div>
           </form>
