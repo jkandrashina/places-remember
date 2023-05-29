@@ -3,4 +3,4 @@ from .models import PlaceRemember
 
 @admin.register(PlaceRemember)
 class PlaceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('place_name', 'author', 'pub_date')
