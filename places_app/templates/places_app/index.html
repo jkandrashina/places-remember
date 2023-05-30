@@ -7,6 +7,12 @@
 {% block content %}
     <main class="home-signin p-3 mx-auto">
       <h1 class="display-5 fw-bold mb-4">Places Remember</h1>
+      {% if user.is_authenticated %}
+      <p class="lead mb-4">Вы уже вошли в свой аккаунт <span class="fw-medium">{{ user.socialaccount_set.all.0.provider }}</span></p>
+      <div class="d-grid gap-3 col-10 col-sm-4 mx-auto">
+          <a href="{% url 'my_places' %}" class="btn btn-outline-primary">Продолжить</a>
+      </div>
+      {% else %}
       <div class="mb-5">
         <p class="lead">Добро пожаловать в сервис, который позволяет Вам сохранять свои воспоминания.
         <br>
@@ -17,5 +23,6 @@
         <a href="{% provider_login_url 'google' %}" class="btn btn-outline-primary">Войти через Google</a>
         <a href="{% provider_login_url 'vk' %}" class="btn btn-outline-success">Войти через VK</a>
       </div>
+      {% endif %}
     </main>
 {% endblock %}
