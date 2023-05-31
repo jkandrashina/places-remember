@@ -97,13 +97,16 @@ http://127.0.0.1:8000
 11. Для авторизации пользователей через аккаунты Google / VK необходимо зарегистрировать свое приложение в каждом из сервисов:
    
     Google
+    
     [https://console.developers.google.com/](https://console.developers.google.com/ "Google Developers Console")
 
     VK
+    
     [https://vk.com/editapp?act=create](https://vk.com/editapp?act=create "VK Developers")
    
    
     Информацию о callback urls можно найти здесь:
+    
     [https://django-allauth.readthedocs.io/en/latest/providers.html](https://django-allauth.readthedocs.io/en/latest/providers.html "Oauth Providers")
 
     После регистрации приложения вам будут доступны ключи и id клиента.
@@ -117,6 +120,7 @@ http://127.0.0.1:8000/admin
 13. В разделе "Сайты" измените сайт example.com следующим образом:
 
     **Доменное имя**: http://127.0.0.1:8000
+    
     **Отображаемое имя**: Places Remember
 
 14. В разделе "Социальные аккаунты" выберите ссылку "Социальные приложения".
