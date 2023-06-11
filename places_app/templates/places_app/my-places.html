@@ -17,8 +17,10 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="col-2">Название</th>
-                  <th class="col-8">Комментарий</th>
+                  <th class="col-3">Название</th>
+                  <th class="col-1">Широта</th>
+                  <th class="col-1">Долгота</th>
+                  <th class="col-5">Комментарий</th>
                   <th class="col-1"></th>
                   <th class="col-1"></th>
                 </tr>
@@ -27,6 +29,8 @@
                 {% for place in places %}
                 <tr>
                   <td>{{ place.place_name }}</td>
+                  <td>{{ place.location.latitude }}</td>
+                  <td>{{ place.location.longitude }}</td>
                   <td>{{ place.comment }}</td>
                   <td><a href="{% url 'update_place' place.id %}" class="btn btn-outline-primary">Изменить</a></td>
                   <td><a href="{% url 'delete_place' place.id %}" class="btn btn-outline-danger">Удалить</a></td>
