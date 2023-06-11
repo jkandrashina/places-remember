@@ -1,12 +1,18 @@
 from django.conf import settings
 from django.db import models
 
+from treasuremap.fields import LatLongField
+
 
 class PlaceRemember(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name='Автор',
+    )
+    location = LatLongField(
+        blank=True,
+        verbose_name='Карта',
     )
     place_name = models.CharField(
         max_length=150,
