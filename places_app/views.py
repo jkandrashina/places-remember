@@ -23,7 +23,7 @@ class PlaceCreateView(CreateView):
     model = PlaceRemember
     template_name = 'places_app/place-form.html'
     success_url = reverse_lazy('my_places')
-    fields = ['place_name', 'comment']
+    fields = ['location', 'place_name', 'comment']
     
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -34,7 +34,7 @@ class PlaceUpdateView(UpdateView):
     model = PlaceRemember
     template_name = 'places_app/place-update.html'
     success_url = reverse_lazy('my_places')
-    fields = ['place_name', 'comment']
+    fields = ['location', 'place_name', 'comment']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
