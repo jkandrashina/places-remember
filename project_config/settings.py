@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.vk',
+    'treasuremap',
 ]
 
 MIDDLEWARE = [
@@ -160,3 +161,16 @@ SOCIALACCOUNT_PROVIDERS = {
 
 LOGIN_REDIRECT_URL = '/my-places/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+# TREASUREMAP SETTINGS
+TREASURE_MAP = {
+    'BACKEND': 'treasuremap.backends.yandex.YandexMapBackend',
+    'API_KEY': os.getenv('YANDEX_KEY'),
+    'SIZE': (600, 400),
+    'MAP_OPTIONS': {
+        'latitude': 56.832885,
+        'longitude': 60.610191,
+        'zoom': 5
+    }
+}
