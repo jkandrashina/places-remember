@@ -5,15 +5,17 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from .models import PlaceRemember
+from treasuremap.fields import LatLongField
 
 
 class PlaceModelTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='jay')
-        self.place = PlaceRemember.objects.create(author=self.user, place_name='Стокгольм', comment='Комментарий о Стокгольме')
+        self.place = PlaceRemember.objects.create(author=self.user, location='59.329320;18.068580', place_name='Стокгольм', comment='Комментарий о Стокгольме')
 
     def test_place_is_created(self):
         self.assertEqual(self.place.author, self.user)
+        self.assertEqual(self.place.location, '59.329320;18.068580')
         self.assertEqual(self.place.place_name, 'Стокгольм')
         self.assertEqual(self.place.comment, 'Комментарий о Стокгольме')
         self.assertEqual(self.place.pub_date, date.today())
@@ -28,9 +30,10 @@ class PlaceCreateTestCase(TestCase):
     def test_user_can_add_new_place(self):
         self.auth_client.post(
             '/add-place/',
-            {'place_name': 'Амстердам', 'comment': 'Комментарий об Амстердаме'}
+            {'location_0': 52.370215, 'location_1': 4.895167, 'place_name': 'Амстердам', 'comment': 'Комментарий об Амстердаме'}
         )
         places_list = PlaceRemember.objects.filter(id=1)
+        self.assertEqual(str(places_list[0].location), '52.370215;4.895167')
         self.assertEqual(places_list[0].place_name, 'Амстердам')
         self.assertEqual(places_list[0].comment, 'Комментарий об Амстердаме')
 
@@ -41,8 +44,8 @@ class PlacesListTestCase(TestCase):
         self.auth_client = Client()
         self.auth_client.force_login(self.user)
         PlaceRemember.objects.bulk_create([
-            PlaceRemember(author=self.user, place_name='Париж', comment='Комментарий о Париже'),
-            PlaceRemember(author=self.user, place_name='Лондон', comment='Комментарий о Лондоне')
+            PlaceRemember(author=self.user, location='48.856614;2.352221', place_name='Париж', comment='Комментарий о Париже'),
+            PlaceRemember(author=self.user, location='48.856614;2.352221', place_name='Лондон', comment='Комментарий о Лондоне')
         ])
 
     def test_status_code_is_200(self):
