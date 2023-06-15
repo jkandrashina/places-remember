@@ -9,7 +9,7 @@
       {% if object.author == user %}
       <main>
         <h1 class="py-5 text-center">Изменить воспоминание</h1>
-        <div class="col-md-6 mx-auto">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
           <form method="post" class="add-place-form">
             {% csrf_token %}
             {{ form.media }}
@@ -25,7 +25,7 @@
                 {{ field }}
               </div>
             {% endfor %}
-              <div class="col-12 col-md-4 mx-auto mt-4">
+              <div class="col-12 col-md-5 mx-auto mt-4">
                 <input class="btn btn-lg btn-outline-primary w-100" type="submit" value="Сохранить">
               </div>
             </div>

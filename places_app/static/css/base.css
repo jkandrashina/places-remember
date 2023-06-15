@@ -24,7 +24,7 @@ body {
 }
 
 .add-place-form {
-  margin-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 .add-place-form input[type="text"],
@@ -44,4 +44,8 @@ body {
   appearance: none;
   border-radius: .375rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+label.form-label {
+  display: block;
 }
