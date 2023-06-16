@@ -148,6 +148,11 @@ SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
+         'APP': {
+            'client_id': os.getenv('GOOGLE_ID'),
+            'secret': os.getenv('GOOGLE_SECRET'),
+            'key': ''
+        },
         'SCOPE': [
             'profile',
             'email',
@@ -156,6 +161,13 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'offline',
         },
         'OAUTH_PKCE_ENABLED': True,
+    },
+    'vk': {
+         'APP': {
+            'client_id': os.getenv('VK_ID'),
+            'secret': os.getenv('VK_SECRET'),
+            'key': os.getenv('VK_KEY')
+        }
     }
 }
 
