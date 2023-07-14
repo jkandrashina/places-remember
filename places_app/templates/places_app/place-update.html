@@ -3,8 +3,9 @@
 {% block title %}Изменить воспоминание{% endblock %}
 
 {% block content %}
-  {% if user.is_authenticated %}
+  {% if user.is_authenticated %}<!-- Если пользователь авторизован -->
     {% include './blocks/auth-user-info.html' %}
+
     <div class="container">
       {% if object.author == user %}
       <main>
@@ -12,7 +13,7 @@
         <div class="col-12 col-md-8 col-lg-6 mx-auto">
           <form method="post" class="add-place-form">
             {% csrf_token %}
-            {{ form.media }}
+            {{ form.media }}<!-- Карта -->
             <div class="row g-3">
             {% for field in form %}
               <div class="col-12">
@@ -36,7 +37,5 @@
         {% include './blocks/permission-required.html' %}
       {% endif %}
     </div>
-  {% else %}
-    {% include './blocks/auth-required.html' %}
-  {% endif %}
-{% endblock %}
+  {% endif %}<!-- Окончание блока if user.is_authenticated -->
+{% endblock %}<!-- Окончание блока content -->

@@ -13,8 +13,8 @@
     {% block extra_head %}
     {% endblock %}
   </head>
-  <body class="d-flex align-items-center justify-content-center">
-    <main>
+  <body>
+    <main class="mx-auto p-3 auth-required">
     {% block body %}
       {% if messages %}
       <div>

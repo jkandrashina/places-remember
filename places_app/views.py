@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from .models import PlaceRemember
@@ -10,7 +11,7 @@ class HomeView(TemplateView):
     template_name = 'places_app/index.html'
 
 
-class PlacesListView(ListView):
+class PlacesListView(LoginRequiredMixin, ListView):
     model = PlaceRemember
     template_name = 'places_app/my-places.html'
     context_object_name = 'places'
@@ -19,7 +20,7 @@ class PlacesListView(ListView):
         return PlaceRemember.objects.filter(author=self.request.user)
 
 
-class PlaceCreateView(CreateView):
+class PlaceCreateView(LoginRequiredMixin, CreateView):
     model = PlaceRemember
     template_name = 'places_app/place-form.html'
     success_url = reverse_lazy('my_places')
@@ -30,7 +31,7 @@ class PlaceCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PlaceUpdateView(UpdateView):
+class PlaceUpdateView(LoginRequiredMixin, UpdateView):
     model = PlaceRemember
     template_name = 'places_app/place-update.html'
     success_url = reverse_lazy('my_places')
@@ -41,7 +42,7 @@ class PlaceUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class PlaceDeleteView(DeleteView):
+class PlaceDeleteView(LoginRequiredMixin, DeleteView):
     model = PlaceRemember
     template_name = 'places_app/place-delete.html'
     success_url = reverse_lazy('my_places')

@@ -23,7 +23,5 @@
       {% include './blocks/permission-required.html' %}
     {% endif %}
     </div>
-  {% else %}<!-- Иначе если пользователь не авторизован -->
-    {% include './blocks/auth-required.html' %}
   {% endif %}<!-- Окончание блока if user.is_authenticated -->
 {% endblock %}<!-- Окончание блока content -->

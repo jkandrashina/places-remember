@@ -13,6 +13,7 @@ body {
   width: 100%;
   max-width: 780px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   text-align: center;
@@ -23,6 +24,32 @@ body {
   margin-right: 15px;
 }
 
+
+/* Social accounts providers links (i.e. Google, VK)  */
+.auth-providers .btn {
+  color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.auth-providers .btn:hover {
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.auth-providers .btn:nth-of-type(even) {
+  color: #198754;
+  border-color: #198754;
+}
+
+.auth-providers .btn:nth-of-type(even):hover {
+  color: #fff;
+  background-color: #198754;
+  border-color: #198754;
+}
+
+
+/* "Add new place" form */
 .add-place-form {
   padding-bottom: 100px;
 }
