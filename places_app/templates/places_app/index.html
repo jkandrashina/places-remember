@@ -7,22 +7,27 @@
 {% block content %}
     <main class="home-signin p-3 mx-auto">
       <h1 class="display-5 fw-bold mb-4">Places Remember</h1>
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated %}<!-- Если пользователь авторизован -->
       <p class="lead mb-4">Вы уже вошли в свой аккаунт <span class="fw-medium">{{ user.socialaccount_set.all.0.provider }}</span></p>
       <div class="d-grid gap-3 col-10 col-sm-4 mx-auto">
           <a href="{% url 'my_places' %}" class="btn btn-outline-primary">Продолжить</a>
       </div>
-      {% else %}
+      {% else %}<!-- Иначе если пользователь не авторизован -->
       <div class="mb-5">
         <p class="lead">Добро пожаловать в сервис, который позволяет Вам сохранять свои воспоминания.
         <br>
         Добавляйте города и страны, в которых Вы побывали, и оставляйте комментарии к ним.</p>
         <p class="lead">Используйте свой аккаунт Google или VK, чтобы получить доступ ко всем возможностям Places Remember.</p>
-      </div> 
-      <div class="d-grid gap-3 col-10 col-sm-4 mx-auto">
-        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-primary">Войти через Google</a>
-        <a href="{% provider_login_url 'vk' %}" class="btn btn-outline-success">Войти через VK</a>
       </div>
-      {% endif %}
+      {% get_providers as socialaccount_providers %}
+      {% if socialaccount_providers %}
+      <div class="d-grid gap-3 col-10 col-sm-4 mx-auto auth-providers">
+        {% for provider in socialaccount_providers %}
+        <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}} btn" 
+     href="{% provider_login_url provider.id scope=scope auth_params=auth_params %}">Войти через {{provider.name}}</a>
+        {% endfor %}
+      </div>
+      {% endif %}<!-- Окончание блока if socialaccount_providers -->
+      {% endif %}<!-- Окончание блока if user.is_authenticated -->
     </main>
-{% endblock %}
+{% endblock %}<!-- Окончание блока content -->
