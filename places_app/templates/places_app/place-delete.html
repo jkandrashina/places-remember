@@ -3,25 +3,20 @@
 {% block title %}Удалить запись{% endblock %}
 
 {% block content %}
-  {% if user.is_authenticated %}<!-- Если пользователь авторизован -->
-    {% include './blocks/auth-user-info.html' %}
+  {% include './blocks/auth-user-info.html' %}
 
     <div class="container">
-    {% if object.author == user %}
       <main>
         <h1 class="py-5 text-center">Удалить запись</h1>
         <div class="col-md-6 mx-auto">
           <form method="post">{% csrf_token %}
-            <p class="lead">Вы уверены, что хотите удалить запись "{{ object.place_name }}"?</p>            <div class="form-group">
+            <p class="lead">Вы уверены, что хотите удалить запись "{{ object.place_name }}"?</p>
+            <div class="form-group">
               <button class="btn btn-outline-danger" type="submit">Удалить</button>
               <a class="btn btn-outline-secondary" href="{% url 'my_places' %}">Отмена</a>
             </div>
           </form>
         </div>
       </main>
-    {% else %}
-      {% include './blocks/permission-required.html' %}
-    {% endif %}
     </div>
-  {% endif %}<!-- Окончание блока if user.is_authenticated -->
 {% endblock %}<!-- Окончание блока content -->

@@ -21,3 +21,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('places_app.urls')),
 ]
+
+handler404 = 'places_app.views.error404'
+handler403 = 'places_app.views.error403'

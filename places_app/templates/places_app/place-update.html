@@ -3,11 +3,9 @@
 {% block title %}Изменить воспоминание{% endblock %}
 
 {% block content %}
-  {% if user.is_authenticated %}<!-- Если пользователь авторизован -->
-    {% include './blocks/auth-user-info.html' %}
+  {% include './blocks/auth-user-info.html' %}
 
     <div class="container">
-      {% if object.author == user %}
       <main>
         <h1 class="py-5 text-center">Изменить воспоминание</h1>
         <div class="col-12 col-md-8 col-lg-6 mx-auto">
@@ -33,9 +31,5 @@
           </form>
         </div>
       </main>
-      {% else %}
-        {% include './blocks/permission-required.html' %}
-      {% endif %}
     </div>
-  {% endif %}<!-- Окончание блока if user.is_authenticated -->
 {% endblock %}<!-- Окончание блока content -->
