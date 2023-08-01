@@ -5,7 +5,7 @@ from treasuremap import widgets
 
 @admin.register(PlaceRemember)
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('place_name', 'author', 'pub_date')
+    list_display = ('place_name', 'author', 'pub_date', 'id')
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'location':
